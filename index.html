@@ -29,7 +29,7 @@
         th {
             background-color: #f2f2f2;
         }
-        input[type="text"], input[type="number"], select {
+        input[type="text"], input[type="number"], input[type="date"], select, textarea {
             width: 100%;
             padding: 5px;
             margin: 5px 0;
@@ -349,79 +349,59 @@
             <td id="puntaje_generica_sello">0</td>
         </tr>
         <tr>
-            <td>8. Evaluación de suficiencia</td>
-            <td>0%</td>
-            <td id="puntaje_suficiencia">0</td>
-        </tr>
-        <tr>
-            <td colspan="2"><strong>Nota obtenida</strong></td>
-            <td id="nota_final">0</td>
+            <td colspan="2"><strong>CALIFICACIÓN FINAL</strong></td>
+            <td id="calificacion_final">0</td>
         </tr>
     </table>
 
     <div class="firma">
-        <p>Firma estudiante: ____________________</p>
+        <p>Firma del Evaluador: ____________________________</p>
     </div>
-    <div class="firma">
-        <p>Firma docente supervisor: ____________________</p>
-    </div>
-
-    <p><strong>Nota:</strong> Si el estudiante presenta uno de los ítems con nota inferior a 4,0 se considera reprobación inmediata del Internado.</p>
-
-    <button class="no-print" onclick="window.print()">Imprimir / Guardar como PDF</button>
 
     <script>
-        document.addEventListener('input', function(e) {
-            if (e.target.classList.contains('puntaje')) {
-                calcularPuntajes();
+        document.addEventListener('DOMContentLoaded', function() {
+            const puntajes = document.querySelectorAll('.puntaje');
+            const resumen = document.getElementById('resumen');
+
+            puntajes.forEach(puntaje => {
+                puntaje.addEventListener('input', calcularPuntajes);
+            });
+
+            function calcularPuntajes() {
+                const dimensiones = {
+                    actitudinal: { suma: 0, count: 0, peso: 0.10 },
+                    formalidad: { suma: 0, count: 0, peso: 0.10 },
+                    atencion: { suma: 0, count: 0, peso: 0.10 },
+                    asistencial: { suma: 0, count: 0, peso: 0.10 },
+                    administrativo: { suma: 0, count: 0, peso: 0.20 },
+                    conocimiento: { suma: 0, count: 0, peso: 0.30 },
+                    generica: { suma: 0, count: 0, peso: 0.05 },
+                    sello: { suma: 0, count: 0, peso: 0.05 }
+                };
+
+                puntajes.forEach(puntaje => {
+                    const dimension = puntaje.dataset.dimension;
+                    const valor = parseFloat(puntaje.value) || 0;
+                    dimensiones[dimension].suma += valor;
+                    dimensiones[dimension].count++;
+                });
+
+                let calificacionFinal = 0;
+
+                for (const [dimension, data] of Object.entries(dimensiones)) {
+                    const promedio = data.count > 0 ? data.suma / data.count : 0;
+                    const puntajePonderado = promedio * data.peso;
+                    calificacionFinal += puntajePonderado;
+
+                    const elementId = dimension === 'generica' || dimension === 'sello' ? 'puntaje_generica_sello' : `puntaje_${dimension}`;
+                    document.getElementById(elementId).textContent = promedio.toFixed(2);
+                }
+
+                // Convertir calificación final a escala de 1 a 7
+                calificacionFinal = (calificacionFinal / 4) * 6 + 1;
+                document.getElementById('calificacion_final').textContent = calificacionFinal.toFixed(2);
             }
         });
-
-        function calcularPuntajes() {
-            let dimensiones = {
-                'actitudinal': { sum: 0, count: 0, weight: 0.1 },
-                'formalidad': { sum: 0, count: 0, weight: 0.1 },
-                'atencion': { sum: 0, count: 0, weight: 0.1 },
-                'asistencial': { sum: 0, count: 0, weight: 0.1 },
-                'administrativo': { sum: 0, count: 0, weight: 0.2 },
-                'conocimiento': { sum: 0, count: 0, weight: 0.3 },
-                'generica': { sum: 0, count: 0, weight: 0.05 },
-                'sello': { sum: 0, count: 0, weight: 0.05 }
-            };
-
-            document.querySelectorAll('.puntaje').forEach(function(input) {
-                let dimension = input.dataset.dimension;
-                let value = parseFloat(input.value) || 0;
-                dimensiones[dimension].sum += value;
-                dimensiones[dimension].count++;
-            });
-
-            let notaFinal = 0;
-            for (let dim in dimensiones) {
-                let promedio = dimensiones[dim].sum / dimensiones[dim].count;
-                let puntajePonderado = promedio * dimensiones[dim].weight;
-                notaFinal += puntajePonderado;
-                document.getElementById('puntaje_' + dim).textContent = promedio.toFixed(2);
-            }
-
-            document.getElementById('puntaje_generica_sello').textContent = 
-                ((parseFloat(document.getElementById('puntaje_generica').textContent) || 0) +
-                 (parseFloat(document.getElementById('puntaje_sello').textContent) || 0)).toFixed(2);
-
-            document.getElementById('nota_final').textContent = notaFinal.toFixed(2);
-
-            // Verificar si algún ítem tiene nota inferior a 4.0
-            let reprobado = false;
-            document.querySelectorAll('.puntaje').forEach(function(input) {
-                if (parseFloat(input.value) < 4.0) {
-                    reprobado = true;
-                }
-            });
-
-            if (reprobado) {
-                alert("El estudiante ha reprobado el Internado debido a que tiene al menos un ítem con nota inferior a 4.0");
-            }
-        }
     </script>
 </body>
 </html>
