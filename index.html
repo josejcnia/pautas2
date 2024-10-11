@@ -3,405 +3,154 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pauta de Evaluación Supervisor Clínico</title>
+    <title>INSTRUMENTOS EVALUATIVOS PARA PROCESOS DE PRÁCTICAS</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
-            line-height: 1.6;
-            color: #333;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0066cc, #004080);
+            color: white;
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+        }
+        .container {
             max-width: 1200px;
             margin: 0 auto;
             padding: 20px;
         }
-        h1, h2 {
-            color: #2c3e50;
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 2.5em;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
         }
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-bottom: 20px;
+        .menu {
+            list-style-type: none;
+            padding: 0;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
         }
-        th, td {
-            border: 1px solid #ddd;
-            padding: 8px;
-            text-align: left;
+        .menu li {
+            position: relative;
         }
-        th {
-            background-color: #f2f2f2;
+        .menu a {
+            display: block;
+            padding: 15px;
+            background-color: rgba(255, 255, 255, 0.1);
+            color: white;
+            text-decoration: none;
+            border-radius: 10px;
+            transition: all 0.3s;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
         }
-        input[type="text"], input[type="number"], input[type="date"], select, textarea {
-            width: 100%;
-            padding: 5px;
-            margin: 5px 0;
+        .menu a:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+            transform: translateY(-5px);
+            box-shadow: 0 6px 8px rgba(0,0,0,0.2);
         }
-        .firma {
-            border-top: 1px solid #000;
-            margin-top: 50px;
-            padding-top: 10px;
+        .submenu {
+            display: none;
+            list-style-type: none;
+            padding-left: 20px;
+            margin-top: 10px;
         }
-        @media print {
-            .no-print {
-                display: none;
-            }
+        .submenu li {
+            margin-top: 5px;
+        }
+        .submenu a {
+            background-color: rgba(255, 255, 255, 0.05);
+            padding: 10px;
+        }
+        .preview {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: white;
+            color: #333;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            z-index: 10;
+            width: 300px;
+            max-width: 90vw;
+        }
+        .menu li:hover .preview {
+            display: block;
         }
     </style>
 </head>
 <body>
-    <h1>PAUTA DE EVALUACIÓN SUPERVISOR CLÍNICO</h1>
-    <h2>INTERNADO ATENCIÓN PRIMARIA DE SALUD (APS)</h2>
-    <h3>Carrera de enfermería</h3>
-
-    <h2>I. Identificación del/la estudiante</h2>
-    <table>
-        <tr>
-            <td>Nombre:</td>
-            <td><input type="text" id="nombre"></td>
-            <td>Fecha:</td>
-            <td><input type="date" id="fecha"></td>
-        </tr>
-        <tr>
-            <td>Servicio:</td>
-            <td><input type="text" id="servicio"></td>
-        </tr>
-        <tr>
-            <td>Campo clínico:</td>
-            <td><input type="text" id="campo_clinico"></td>
-        </tr>
-        <tr>
-            <td>Supervisor clínico:</td>
-            <td><input type="text" id="supervisor_clinico"></td>
-        </tr>
-        <tr>
-            <td>Supervisor universidad:</td>
-            <td><input type="text" id="supervisor_universidad"></td>
-        </tr>
-    </table>
-
-    <h2>II. Pauta de evaluación de desempeño Internado:</h2>
-
-    <table id="evaluacion">
-        <tr>
-            <th>Dimensión</th>
-            <th>Criterios de evaluación</th>
-            <th>Nivel de logro (0-4)</th>
-        </tr>
-        <!-- Ámbito actitudinal -->
-        <tr>
-            <td rowspan="6">Conductual y personal - Ámbito actitudinal</td>
-            <td>Demuestra interés en la búsqueda de oportunidades de aprendizaje.</td>
-            <td><input type="number" min="0" max="4" class="puntaje" data-dimension="actitudinal"></td>
-        </tr>
-        <tr>
-            <td>Demuestra autocrítica en el desarrollo de sus actividades.</td>
-            <td><input type="number" min="0" max="4" class="puntaje" data-dimension="actitudinal"></td>
-        </tr>
-        <tr>
-            <td>Aplica principios éticos en su quehacer como interno de enfermeria.</td>
-            <td><input type="number" min="0" max="4" class="puntaje" data-dimension="actitudinal"></td>
-        </tr>
-        <tr>
-            <td>Reconoce opiniones constructivas de parte de la supervisión del/la docente.</td>
-            <td><input type="number" min="0" max="4" class="puntaje" data-dimension="actitudinal"></td>
-        </tr>
-        <tr>
-            <td>Práctica las observaciones y/o sugerencias proporcionadas por el/la docente.</td>
-            <td><input type="number" min="0" max="4" class="puntaje" data-dimension="actitudinal"></td>
-        </tr>
-        <tr>
-            <td>Demuestra interés por trabajar en equipo, desarrollando habilidades como la comunicación efectiva y resolución de problemas.</td>
-            <td><input type="number" min="0" max="4" class="puntaje" data-dimension="actitudinal"></td>
-        </tr>
-        <!-- Formalidad profesional -->
-        <tr>
-            <td rowspan="4">Conductual y personal - Formalidad profesional</td>
-            <td>Mantiene una relación cordial y formal con docentes, pares y equipo de salud.</td>
-            <td><input type="number" min="0" max="4" class="puntaje" data-dimension="formalidad"></td>
-        </tr>
-        <tr>
-            <td>Cumple puntualmente con su horario acordado. En caso de inasistencia y/o atrasos, da cuenta de ello justificándolos cuando corresponda a sus supervisores (Clínico y UAC).</td>
-            <td><input type="number" min="0" max="4" class="puntaje" data-dimension="formalidad"></td>
-        </tr>
-        <tr>
-            <td>Utiliza el uniforme según normas establecidas por la universidad, respetando las normas del campo clínico.</td>
-            <td><input type="number" min="0" max="4" class="puntaje" data-dimension="formalidad"></td>
-        </tr>
-        <tr>
-            <td>Utiliza un adecuado lenguaje técnico, formal y escrito, considerando el nivel formativo en el que se encuentra.</td>
-            <td><input type="number" min="0" max="4" class="puntaje" data-dimension="formalidad"></td>
-        </tr>
-        <!-- Atención al paciente -->
-        <tr>
-            <td rowspan="7">Atención al paciente</td>
-            <td>Mantiene la privacidad del usuario y su familia durante la atención de enfermería.</td>
-            <td><input type="number" min="0" max="4" class="puntaje" data-dimension="atencion"></td>
-        </tr>
-        <tr>
-            <td>Informa cada una de las actividades propias relacionadas a la enfermería, explicando sus detalles al paciente.</td>
-            <td><input type="number" min="0" max="4" class="puntaje" data-dimension="atencion"></td>
-        </tr>
-        <tr>
-            <td>Informa oportunamente en caso de cometer algún error u omisión en su quehacer como interno de enfermería.</td>
-            <td><input type="number" min="0" max="4" class="puntaje" data-dimension="atencion"></td>
-        </tr>
-        <tr>
-            <td>Respeta la autonomía del/la paciente, si esta es solicitada.</td>
-            <td><input type="number" min="0" max="4" class="puntaje" data-dimension="atencion"></td>
-        </tr>
-        <tr>
-            <td>Demuestra empatía por el/la paciente, expresando preocupación por las necesidades del/la mismo/a.</td>
-            <td><input type="number" min="0" max="4" class="puntaje" data-dimension="atencion"></td>
-        </tr>
-        <tr>
-            <td>Educa al usuario y su familia en actividades propias relacionadas con su quehacer de enfermería.</td>
-            <td><input type="number" min="0" max="4" class="puntaje" data-dimension="atencion"></td>
-        </tr>
-        <tr>
-            <td>Mantiene una relación cordial y formal con el/la usuario y su familia.</td>
-            <td><input type="number" min="0" max="4" class="puntaje" data-dimension="atencion"></td>
-        </tr>
-        <!-- Rol asistencial y servicio -->
-        <tr>
-            <td rowspan="9">Rol asistencial y servicio</td>
-            <td>Ejecuta las normas de precauciones universales para el rol asistencial de enfermería.</td>
-            <td><input type="number" min="0" max="4" class="puntaje" data-dimension="asistencial"></td>
-        </tr>
-        <tr>
-            <td>Ejecuta control e interpretación correcta de signos vitales.</td>
-            <td><input type="number" min="0" max="4" class="puntaje" data-dimension="asistencial"></td>
-        </tr>
-        <tr>
-            <td>Ejecuta control de salud infantil de acuerdo con su grupo etario, e interpreta los resultados obtenidos.</td>
-            <td><input type="number" min="0" max="4" class="puntaje" data-dimension="asistencial"></td>
-        </tr>
-        <tr>
-            <td>Entrega indicaciones correctas y claras a la madre de acuerdo con la edad del niño.</td>
-            <td><input type="number" min="0" max="4" class="puntaje" data-dimension="asistencial"></td>
-        </tr>
-        <tr>
-            <td>Deriva oportuna y correctamente los hallazgos encontrados en un/a usuario.</td>
-            <td><input type="number" min="0" max="4" class="puntaje" data-dimension="asistencial"></td>
-        </tr>
-        <tr>
-            <td>Conoce y aplica correctamente pautas de evaluación del adulto y adulto mayor.</td>
-            <td><input type="number" min="0" max="4" class="puntaje" data-dimension="asistencial"></td>
-        </tr>
-        <tr>
-            <td>Realiza educación en los diferentes programas: Programa de salud infantil, programa del adulto, programa del adulto mayor.</td>
-            <td><input type="number" min="0" max="4" class="puntaje" data-dimension="asistencial"></td>
-        </tr>
-        <tr>
-            <td>Conoce y realiza control cardiovascular, considerando el registro en el programa Rayen.</td>
-            <td><input type="number" min="0" max="4" class="puntaje" data-dimension="asistencial"></td>
-        </tr>
-        <tr>
-            <td>Conoce y aplica el plan nacional de inmunizaciones (PNI) y entrega información adecuada sobre el mismo.</td>
-            <td><input type="number" min="0" max="4" class="puntaje" data-dimension="asistencial"></td>
-        </tr>
-        <!-- Manejo administrativo y servicio -->
-        <tr>
-            <td rowspan="8">Manejo administrativo y servicio</td>
-            <td>Conoce y maneja documentación inserta en programas computacionales.</td>
-            <td><input type="number" min="0" max="4" class="puntaje" data-dimension="administrativo"></td>
-        </tr>
-        <tr>
-            <td>Registra adecuadamente los procedimientos realizados, en forma clara, legible, responsable y oportuna utilizando leguaje técnico.</td>
-            <td><input type="number" min="0" max="4" class="puntaje" data-dimension="administrativo"></td>
-        </tr>
-        <tr>
-            <td>Se integra en forma adecuada al Equipo de Salud.</td>
-            <td><input type="number" min="0" max="4" class="puntaje" data-dimension="administrativo"></td>
-        </tr>
-        <tr>
-            <td>Identifica y maneja documentación de los diferentes tipos de controles.</td>
-            <td><input type="number" min="0" max="4" class="puntaje" data-dimension="administrativo"></td>
-        </tr>
-        <tr>
-            <td>Realiza registros de valoración de Enfermería en forma adecuada.</td>
-            <td><input type="number" min="0" max="4" class="puntaje" data-dimension="administrativo"></td>
-        </tr>
-        <tr>
-            <td>Plantea correctamente diagnósticos de Enfermería.</td>
-            <td><input type="number" min="0" max="4" class="puntaje" data-dimension="administrativo"></td>
-        </tr>
-        <tr>
-            <td>Plantea objetivos para los diagnósticos enunciados.</td>
-            <td><input type="number" min="0" max="4" class="puntaje" data-dimension="administrativo"></td>
-        </tr>
-        <tr>
-            <td>Plantea intervenciones de forma priorizada.</td>
-            <td><input type="number" min="0" max="4" class="puntaje" data-dimension="administrativo"></td>
-        </tr>
-        <!-- Manejo de conocimiento y servicio -->
-        <tr>
-            <td rowspan="6">Manejo de conocimiento y servicio</td>
-            <td>Conoce patologías médico-quirúrgico identificables desde la atención de enfermería en el Campo Clínico.</td>
-            <td><input type="number" min="0" max="4" class="puntaje" data-dimension="conocimiento"></td>
-        </tr>
-        <tr>
-            <td>Desarrolla cada procedimiento de enfermería de forma correcta.</td>
-            <td><input type="number" min="0" max="4" class="puntaje" data-dimension="conocimiento"></td>
-        </tr>
-        <tr>
-            <td>Maneja conocimientos de procedimientos médicos que requieren asistencia de enfermería.</td>
-            <td><input type="number" min="0" max="4" class="puntaje" data-dimension="conocimiento"></td>
-        </tr>
-        <tr>
-            <td>Conoce preparación de paciente para exámenes.</td>
-            <td><input type="number" min="0" max="4" class="puntaje" data-dimension="conocimiento"></td>
-        </tr>
-        <tr>
-            <td>Conoce e interpreta exámenes de patologías más frecuentes.</td>
-            <td><input type="number" min="0" max="4" class="puntaje" data-dimension="conocimiento"></td>
-        </tr>
-        <tr>
-            <td>Identifica los fármacos más utilizados en el servicio, conociendo la presentación, mecanismo de acción, formas de administración, indicaciones y contraindicaciones.</td>
-            <td><input type="number" min="0" max="4" class="puntaje" data-dimension="conocimiento"></td>
-        </tr>
-        <!-- Competencias genéricas -->
-        <tr>
-            <td rowspan="7">Dimensión competencia genérica y sello - Competencias genéricas</td>
-            <td>Demuestra habilidades de liderazgo en el ejercicio de sus actividades, favoreciendo la resolución de problemas y el trabajo en equipo.</td>
-            <td><input type="number" min="0" max="4" class="puntaje" data-dimension="generica"></td>
-        </tr>
-        <tr>
-            <td>Se comunica efectivamente con sus compañeros/as y sus superiores, exponiendo de forma clara y concreta sus argumentos, escuchando activamente y transmitiendo la información de forma entendible y empática.</td>
-            <td><input type="number" min="0" max="4" class="puntaje" data-dimension="generica"></td>
-        </tr>
-        <tr>
-            <td>Organiza tareas a corto y largo plazo, priorizando las actividades que requieran urgencia.</td>
-            <td><input type="number" min="0" max="4" class="puntaje" data-dimension="generica"></td>
-        </tr>
-        <tr>
-            <td>Realiza un trabajo colaborativo con sus compañeros/as y superiores, promoviendo la proactividad y el desarrollo de las metas comunes.</td>
-            <td><input type="number" min="0" max="4" class="puntaje" data-dimension="generica"></td>
-        </tr>
-        <tr>
-            <td>Resuelve problemáticas propias de su quehacer enfermero, considerando los protocolos, manuales y reglamentación vigente.</td>
-            <td><input type="number" min="0" max="4" class="puntaje" data-dimension="generica"></td>
-        </tr>
-        <tr>
-            <td>Utiliza un pensamiento crítico en la toma de decisiones, argumentado sus ideas y propuestas.</td>
-            <td><input type="number" min="0" max="4" class="puntaje" data-dimension="generica"></td>
-        </tr>
-        <tr>
-            <td>Aplica habilidades de liderazgo en el ejercicio de sus actividades, favoreciendo la resolución de problemas y el trabajo en equipo.</td>
-            <td><input type="number" min="0" max="4" class="puntaje" data-dimension="generica"></td>
-        </tr>
-        <!-- Competencias sello -->
-        <tr>
-            <td rowspan="3">Dimensión competencia genérica y sello - Competencias sello</td>
-            <td>Aplica la ética profesional en su quehacer dentro del centro de práctica.</td>
-            <td><input type="number" min="0" max="4" class="puntaje" data-dimension="sello"></td>
-        </tr>
-        <tr>
-            <td>Respeta los derechos del usuario en cada una de las situaciones y actividades desarrolladas dentro del centro de práctica.</td>
-            <td><input type="number" min="0" max="4" class="puntaje" data-dimension="sello"></td>
-        </tr>
-        <tr>
-            <td>Respeta el entorno natural en el que se encuentra el centro de práctica en el que se desempeña.</td>
-            <td><input type="number" min="0" max="4" class="puntaje" data-dimension="sello"></td>
-        </tr>
-    </table>
-
-    <h2>OBSERVACIONES Y SUGERENCIAS:</h2>
-    <textarea id="observaciones" rows="4" cols="50"></textarea>
-
-    <h2>RESUMEN DE LA EVALUACIÓN:</h2>
-    <table id="resumen">
-        <tr>
-            <th>Dimensión</th>
-            <th>Ponderación</th>
-            <th>Puntaje obtenido</th>
-        </tr>
-        <tr>
-            <td>1. Ámbito actitudinal</td>
-            <td>10%</td>
-            <td id="puntaje_actitudinal">0</td>
-        </tr>
-        <tr>
-            <td>2. Formalidad profesional</td>
-            <td>10%</td>
-            <td id="puntaje_formalidad">0</td>
-        </tr>
-        <tr>
-            <td>3. Atención al paciente</td>
-            <td>10%</td>
-            <td id="puntaje_atencion">0</td>
-        </tr>
-        <tr>
-            <td>4. Rol asistencial y servicio</td>
-            <td>10%</td>
-            <td id="puntaje_asistencial">0</td>
-        </tr>
-        <tr>
-            <td>5. Manejo administrativo y servicio</td>
-            <td>20%</td>
-            <td id="puntaje_administrativo">0</td>
-        </tr>
-        <tr>
-            <td>6. Manejo de conocimiento y servicio</td>
-            <td>30%</td>
-            <td id="puntaje_conocimiento">0</td>
-        </tr>
-        <tr>
-            <td>7. Dimensión competencia genérica y sello</td>
-            <td>10%</td>
-            <td id="puntaje_generica_sello">0</td>
-        </tr>
-        <tr>
-            <td colspan="2"><strong>CALIFICACIÓN FINAL</strong></td>
-            <td id="calificacion_final">0</td>
-        </tr>
-    </table>
-
-    <div class="firma">
-        <p>Firma del Evaluador: ____________________________</p>
+    <div class="container">
+        <h1>INSTRUMENTOS EVALUATIVOS PARA PROCESOS DE PRÁCTICAS</h1>
+        <ul class="menu">
+            <li>
+                <a href="#" onclick="toggleSubmenu('tns-fiti')">1. Pauta de validación de los instrumentos de práctica TNS FITI</a>
+                <div class="preview">
+                    <h3>Vista previa: TNS FITI</h3>
+                    <p>Este instrumento evalúa aspectos clave de las prácticas en Tecnología en Informática...</p>
+                </div>
+            </li>
+            <li>
+                <a href="#" onclick="toggleSubmenu('kinesiologia')">2. Pauta validación de los instrumentos de prácticas Kinesiología</a>
+                <ul class="submenu" id="kinesiologia">
+                    <li><a href="#">Pauta 1</a></li>
+                    <li><a href="#">Pauta 2</a></li>
+                    <li><a href="#">Pauta 3</a></li>
+                </ul>
+                <div class="preview">
+                    <h3>Vista previa: Kinesiología</h3>
+                    <p>Esta pauta incluye tres instrumentos para evaluar diferentes aspectos de las prácticas en Kinesiología...</p>
+                </div>
+            </li>
+            <li>
+                <a href="#" onclick="toggleSubmenu('terapia-ocupacional')">3. Pauta validación de los instrumentos de práctica Terapia Ocupacional</a>
+                <div class="preview">
+                    <h3>Vista previa: Terapia Ocupacional</h3>
+                    <p>Este instrumento evalúa las competencias adquiridas durante las prácticas en Terapia Ocupacional...</p>
+                </div>
+            </li>
+            <li>
+                <a href="#" onclick="toggleSubmenu('enfermeria')">4. Pauta validación de los instrumentos de prácticas para enfermería y TNS en enfermería</a>
+                <ul class="submenu" id="enfermeria">
+                    <li><a href="#">Pauta 1</a></li>
+                    <li><a href="#">Pauta 2</a></li>
+                </ul>
+                <div class="preview">
+                    <h3>Vista previa: Enfermería</h3>
+                    <p>Esta pauta consta de dos instrumentos para evaluar las prácticas en Enfermería y TNS en Enfermería...</p>
+                </div>
+            </li>
+            <li>
+                <a href="#" onclick="toggleSubmenu('psicologia')">5. Pauta validación de instrumentos de prácticas de Psicología</a>
+                <div class="preview">
+                    <h3>Vista previa: Psicología</h3>
+                    <p>Este instrumento evalúa las habilidades y conocimientos aplicados durante las prácticas en Psicología...</p>
+                </div>
+            </li>
+            <li>
+                <a href="#" onclick="toggleSubmenu('derecho')">6. Pauta de validación de instrumentos de prácticas de derecho</a>
+                <div class="preview">
+                    <h3>Vista previa: Derecho</h3>
+                    <p>Esta pauta evalúa las competencias legales y éticas adquiridas durante las prácticas en Derecho...</p>
+                </div>
+            </li>
+        </ul>
     </div>
 
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const puntajes = document.querySelectorAll('.puntaje');
-            const resumen = document.getElementById('resumen');
-
-            puntajes.forEach(puntaje => {
-                puntaje.addEventListener('input', calcularPuntajes);
-            });
-
-            function calcularPuntajes() {
-                const dimensiones = {
-                    actitudinal: { suma: 0, count: 0, peso: 0.10 },
-                    formalidad: { suma: 0, count: 0, peso: 0.10 },
-                    atencion: { suma: 0, count: 0, peso: 0.10 },
-                    asistencial: { suma: 0, count: 0, peso: 0.10 },
-                    administrativo: { suma: 0, count: 0, peso: 0.20 },
-                    conocimiento: { suma: 0, count: 0, peso: 0.30 },
-                    generica: { suma: 0, count: 0, peso: 0.05 },
-                    sello: { suma: 0, count: 0, peso: 0.05 }
-                };
-
-                puntajes.forEach(puntaje => {
-                    const dimension = puntaje.dataset.dimension;
-                    const valor = parseFloat(puntaje.value) || 0;
-                    dimensiones[dimension].suma += valor;
-                    dimensiones[dimension].count++;
-                });
-
-                let calificacionFinal = 0;
-
-                for (const [dimension, data] of Object.entries(dimensiones)) {
-                    const promedio = data.count > 0 ? data.suma / data.count : 0;
-                    const puntajePonderado = promedio * data.peso;
-                    calificacionFinal += puntajePonderado;
-
-                    const elementId = dimension === 'generica' || dimension === 'sello' ? 'puntaje_generica_sello' : `puntaje_${dimension}`;
-                    document.getElementById(elementId).textContent = promedio.toFixed(2);
+        function toggleSubmenu(id) {
+            var submenu = document.getElementById(id);
+            if (submenu) {
+                if (submenu.style.display === "block") {
+                    submenu.style.display = "none";
+                } else {
+                    submenu.style.display = "block";
                 }
-
-                // Convertir calificación final a escala de 1 a 7
-                calificacionFinal = (calificacionFinal / 4) * 6 + 1;
-                document.getElementById('calificacion_final').textContent = calificacionFinal.toFixed(2);
             }
-        });
+        }
     </script>
 </body>
 </html>
