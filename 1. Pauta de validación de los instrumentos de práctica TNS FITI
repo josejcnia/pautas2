@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pauta de Evaluación de Práctica Laboral</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        h1, h2, h3 {
+            color: #2c3e50;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        input[type="text"], input[type="number"], select, textarea {
+            width: 100%;
+            padding: 5px;
+            margin: 5px 0;
+        }
+        .firma {
+            border-top: 1px solid #000;
+            margin-top: 50px;
+            padding-top: 10px;
+        }
+        @media print {
+            .no-print {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>ANEXO N° 3: PAUTA DE EVALUACIÓN DE PRÁCTICA LABORAL</h1>
+
+    <h2>I. PRESENTACIÓN</h2>
+    <p>El presente instrumento contiene y describe los distintos aspectos a ser considerados en el desarrollo de la Práctica Laboral de los estudiantes de las carreras Técnicas de Nivel Superior, impartidas por la Universidad de Aconcagua, el que deberá ser completado por el Guía de Práctica para evaluar el desempeño de los estudiantes en práctica, así como por cada estudiante para realizar su autoevaluación.</p>
+
+    <h2>II. IDENTIFICACIÓN DEL ESTUDIANTE</h2>
+    <table>
+        <tr>
+            <td>ALUMNO:</td>
+            <td><input type="text" id="alumno"></td>
+        </tr>
+        <tr>
+            <td>RUT:</td>
+            <td><input type="text" id="rut_estudiante"></td>
+        </tr>
+        <tr>
+            <td>CARRERA:</td>
+            <td><input type="text" id="carrera"></td>
+        </tr>
+        <tr>
+            <td>SEDE:</td>
+            <td><input type="text" id="sede"></td>
+        </tr>
+        <tr>
+            <td>FECHA:</td>
+            <td><input type="date" id="fecha"></td>
+        </tr>
+    </table>
+
+    <h2>III. IDENTIFICACIÓN DEL GUÍA DE PRÁCTICA</h2>
+    <table>
+        <tr>
+            <td>NOMBRE:</td>
+            <td><input type="text" id="nombre_guia"></td>
+        </tr>
+        <tr>
+            <td>RUT:</td>
+            <td><input type="text" id="rut_guia"></td>
+        </tr>
+        <tr>
+            <td>CARGO:</td>
+            <td><input type="text" id="cargo_guia"></td>
+        </tr>
+    </table>
+
+    <h2>IV. APLICACIÓN</h2>
+    <p>Marque lo que corresponda:</p>
+    <label><input type="radio" name="aplicacion" value="guia"> Guía de Práctica</label>
+    <label><input type="radio" name="aplicacion" value="autoevaluacion"> Autoevaluación</label>
+
+    <h2>V. EVALUACIÓN</h2>
+    <h3>INSTRUCCIONES</h3>
+    <p>Para cada uno de los aspectos evaluados a continuación, favor marque con una "X" la letra correspondiente a la descripción que mejor interprete su opinión respecto del desempeño del estudiante en práctica.</p>
+
+    <table id="evaluacion">
+        <tr>
+            <th>Aspecto</th>
+            <th>a</th>
+            <th>b</th>
+            <th>c</th>
+            <th>d</th>
+        </tr>
+        <tr>
+            <td>1. Capacidades técnicas</td>
+            <td>
+                <input type="radio" name="capacidades_tecnicas" value="3" onchange="calcularCalificacion()">
+                <p>Demuestra en su desempeño las capacidades suficientes para el trabajo técnico que le corresponde.</p>
+            </td>
+            <td>
+                <input type="radio" name="capacidades_tecnicas" value="2" onchange="calcularCalificacion()">
+                <p>Demuestra en su desempeño solo algunas capacidades para el trabajo que le corresponde.</p>
+            </td>
+            <td>
+                <input type="radio" name="capacidades_tecnicas" value="1" onchange="calcularCalificacion()">
+                <p>Muestra escasas capacidades para el trabajo que le corresponde.</p>
+            </td>
+            <td>
+                <input type="radio" name="capacidades_tecnicas" value="0" onchange="calcularCalificacion()">
+                <p>No tiene las capacidades técnicas necesarias para el trabajo.</p>
+            </td>
+        </tr>
+        <tr>
+            <td>2. Conocimiento de las tareas y funciones de su especialidad</td>
+            <td>
+                <input type="radio" name="conocimiento_tareas" value="3" onchange="calcularCalificacion()">
+                <p>Demuestra un gran conocimiento de las tareas y funciones asociadas a su especialidad.</p>
+            </td>
+            <td>
+                <input type="radio" name="conocimiento_tareas" value="2" onchange="calcularCalificacion()">
+                <p>Demuestra algún conocimiento de las tareas y funciones asociadas a su especialidad.</p>
+            </td>
+            <td>
+                <input type="radio" name="conocimiento_tareas" value="1" onchange="calcularCalificacion()">
+                <p>Demuestra un débil conocimiento de las tareas y funciones asociadas a su especialidad.</p>
+            </td>
+            <td>
+                <input type="radio" name="conocimiento_tareas" value="0" onchange="calcularCalificacion()">
+                <p>No evidencia conocimiento de las tareas y funciones asociadas a su especialidad.</p>
+            </td>
+        </tr>
+        <tr>
+            <td>3. Habilidades prácticas para el desarrollo de las tareas y funciones de su especialidad</td>
+            <td>
+                <input type="radio" name="habilidades_practicas" value="3" onchange="calcularCalificacion()">
+                <p>Demuestra habilidades prácticas muy adecuadas para el desarrollo de las tareas y funciones de su especialidad.</p>
+            </td>
+            <td>
+                <input type="radio" name="habilidades_practicas" value="2" onchange="calcularCalificacion()">
+                <p>Demuestra algunas habilidades prácticas para el desarrollo de las tareas y funciones de su especialidad.</p>
+            </td>
+            <td>
+                <input type="radio" name="habilidades_practicas" value="1" onchange="calcularCalificacion()">
+                <p>Demuestra pocas habilidades prácticas para el desarrollo de las tareas y funciones de su especialidad.</p>
+            </td>
+            <td>
+                <input type="radio" name="habilidades_practicas" value="0" onchange="calcularCalificacion()">
+                <p>No demuestra habilidades prácticas para el desarrollo de las tareas y funciones de su especialidad.</p>
+            </td>
+        </tr>
+        <tr>
+            <td>4. Aspectos actitudinales hacia el desarrollo de sus tareas y funciones</td>
+            <td>
+                <input type="radio" name="aspectos_actitudinales" value="3" onchange="calcularCalificacion()">
+                <p>Siempre demuestra una buena actitud muy adecuada para el desarrollo de las tareas y funciones asignadas.</p>
+            </td>
+            <td>
+                <input type="radio" name="aspectos_actitudinales" value="2" onchange="calcularCalificacion()">
+                <p>Generalmente demuestra una actitud adecuada para el desarrollo de las tareas y funciones asignadas.</p>
+            </td>
+            <td>
+                <input type="radio" name="aspectos_actitudinales" value="1" onchange="calcularCalificacion()">
+                <p>Solo a veces demuestra una actitud adecuada para el desarrollo de las tareas y funciones asignadas.</p>
+            </td>
+            <td>
+                <input type="radio" name="aspectos_actitudinales" value="0" onchange="calcularCalificacion()">
+                <p>Nunca demuestra una actitud adecuada para el desarrollo de las tareas y funciones asignadas.</p>
+            </td>
+        </tr>
+        <tr>
+            <td>5. Comunicación efectiva</td>
+            <td>
+                <input type="radio" name="comunicacion_efectiva" value="3" onchange="calcularCalificacion()">
+                <p>Siempre se comunica, respetando los espacios y tiempos de los otros y escuchándoles adecuadamente.</p>
+            </td>
+            <td>
+                <input type="radio" name="comunicacion_efectiva" value="2" onchange="calcularCalificacion()">
+                <p>Casi siempre se comunica, respetando los espacios y tiempos de los otros y escuchándoles adecuadamente.</p>
+            </td>
+            <td>
+                <input type="radio" name="comunicacion_efectiva" value="1" onchange="calcularCalificacion()">
+                <p>Solo a veces se comunica, respetando los espacios y tiempos de los otros.</p>
+            </td>
+            <td>
+                <input type="radio" name="comunicacion_efectiva" value="0" onchange="calcularCalificacion()">
+                <p>No se comunica, respetando los espacios y tiempos de los otros.</p>
+            </td>
+        </tr>
+        <tr>
+            <td>6. Trabajo en Equipo</td>
+            <td>
+                <input type="radio" name="trabajo_equipo" value="3" onchange="calcularCalificacion()">
+                <p>Trabaja colaborativamente con sus compañeros y promueve el trabajo en equipo.</p>
+            </td>
+            <td>
+                <input type="radio" name="trabajo_equipo" value="2" onchange="calcularCalificacion()">
+                <p>Se integra esporádicamente con el equipo de trabajo.</p>
+            </td>
+            <td>
+                <input type="radio" name="trabajo_equipo" value="1" onchange="calcularCalificacion()">
+                <p>Se integra al grupo de trabajo con cierta dificultad.</p>
+            </td>
+            <td>
+                <input type="radio" name="trabajo_equipo" value="0" onchange="calcularCalificacion()">
+                <p>No se integra al grupo, actúa aisladamente.</p>
+            </td>
+        </tr>
+        <tr>
+            <td>7. Cumplimiento del Perfil de Egreso</td>
+            <td>
+                <input type="radio" name="cumplimiento_perfil" value="3" onchange="calcularCalificacion()">
+                <p>Cumple cabalmente con lo declarado en el perfil de egreso de su carrera.</p>
+            </td>
+            <td>
+                <input type="radio" name="cumplimiento_perfil" value="2" onchange="calcularCalificacion()">
+                <p>Cumple con gran parte de lo declarado en el perfil de egreso de su carrera.</p>
+            </td>
+            <td>
+                <input type="radio" name="cumplimiento_perfil" value="1" onchange="calcularCalificacion()">
+                <p>Cumple solo con parte de lo declarado en el perfil de egreso de su carrera.</p>
+            </td>
+            <td>
+                <input type="radio" name="cumplimiento_perfil" value="0" onchange="calcularCalificacion()">
+                <p>No cumple con lo declarado en el perfil de egreso de su carrera.</p>
+            </td>
+        </tr>
+        <tr>
+            <td>8. Efectividad del Trabajo</td>
+            <td>
+                <input type="radio" name="efectividad_trabajo" value="3" onchange="calcularCalificacion()">
+                <p>Destaca por su eficiencia y/o rendimiento profesional.</p>
+            </td>
+            <td>
+                <input type="radio" name="efectividad_trabajo" value="2" onchange="calcularCalificacion()">
+                <p>En ocasiones sobrepasa el estándar de rendimiento programado.</p>
+            </td>
+            <td>
+                <input type="radio" name="efectividad_trabajo" value="1" onchange="calcularCalificacion()">
+                <p>Acusa cierto déficit de conocimientos debiendo perfeccionarse.</p>
+            </td>
+            <td>
+                <input type="radio" name="efectividad_trabajo" value="0" onchange="calcularCalificacion()">
+                <p>No domina los conocimientos y habilidades correspondientes al nivel de un alumno en práctica.</p>
+            </td>
+        </tr>
+        <tr>
+            <td>9. Adaptabilidad en el trabajo</td>
+            <td>
+                <input type="radio" name="adaptabilidad_trabajo" value="3" onchange="calcularCalificacion()">
+                <p>Se adapta fácilmente a los cambios y resuelve problemas sin dificultad.</p>
+            </td>
+            <td>
+                <input type="radio" name="adaptabilidad_trabajo" value="2" onchange="calcularCalificacion()">
+                <p>No tiene mayores problemas de adaptación y resuelve problemas con alguna dificultad.</p>
+            </td>
+            <td>
+                <input type="radio" name="adaptabilidad_trabajo" value="1" onchange="calcularCalificacion()">
+                <p>Presenta algunos problemas de adaptación y no resuelve problemas por iniciativa propia.</p>
+            </td>
+            <td>
+                <input type="radio" name="adaptabilidad_trabajo" value="0" onchange="calcularCalificacion()">
+                <p>No sabe enfrentar situaciones nuevas o problemas no habituales.</p>
+            </td>
+        </tr>
+        <tr>
+            <td>10. Organización en el Trabajo</td>
+            <td>
+                <input type="radio" name="organizacion_trabajo" value="3" onchange="calcularCalificacion()">
+                <p>Cumple rigurosamente la planificación de su trabajo.</p>
+            </td>
+            <td>
+                <input type="radio" name="organizacion_trabajo" value="2" onchange="calcularCalificacion()">
+                <p>Cumple generalmente la planificación de su trabajo.</p>
+            </td>
+            <td>
+                <input type="radio" name="organizacion_trabajo" value="1" onchange="calcularCalificacion()">
+                <p>Cumple ocasionalmente la planificación de su trabajo.</p>
+            </td>
+            <td>
+                <input type="radio" name="organizacion_trabajo" value="0" onchange="calcularCalificacion()">
+                <p>Improvisa su trabajo.</p>
+            </td>
+        </tr>
+        <tr>
+            <td>11. Calidad del Trabajo</td>
+            <td>
+                <input type="radio" name="calidad_trabajo" value="3" onchange="calcularCalificacion()">
+                <p>Siempre realiza su trabajo cumpliendo con los estándares de calidad definidos.</p>
+            </td>
+            <td>
+                <input type="radio" name="calidad_trabajo" value="2" onchange="calcularCalificacion()">
+                <p>Generalmente realiza su trabajo cumpliendo con los estándares de calidad definidos.</p>
+            </td>
+            <td>
+                <input type="radio" name="calidad_trabajo" value="1" onchange="calcularCalificacion()">
+                <p>Solo en ocasiones realiza su trabajo cumpliendo con los estándares de calidad definidos.</p>
+            </td>
+            <td>
+                <input type="radio" name="calidad_trabajo" value="0" onchange="calcularCalificacion()">
+                <p>Casi nunca realiza su trabajo cumpliendo con los estándares de calidad definidos.</p>
+            </td>
+        </tr>
+        <tr>
+            <td>12. Capacidad crítica</td>
+            <td>
+                <input type="radio" name="capacidad_critica" value="3" onchange="calcularCalificacion()">
+                <p>Siempre evalúa críticamente los diferentes aspectos de su trabajo.</p>
+            </td>
+            <td>
+                <input type="radio" name="capacidad_critica" value="2" onchange="calcularCalificacion()">
+                <p>Generalmente evalúa críticamente los diferentes aspectos de su trabajo.</p>
+            </td>
+            <td>
+                <input type="radio" name="capacidad_critica" value="1" onchange="calcularCalificacion()">
+                <p>Evalúa su trabajo en forma esporádica.</p>
+            </td>
+            <td>
+                <input type="radio" name="capacidad_critica" value="0" onchange="calcularCalificacion()">
+                <p>Nunca evalúa su trabajo.</p>
+            </td>
+        </tr>
+        <tr>
+            <td>13. Puntualidad</td>
+            <td>
+                <input type="radio" name="puntualidad" value="3" onchange="calcularCalificacion()">
+                <p>Siempre llega en forma puntal.</p>
+            </td>
+            <td>
+                <input type="radio" name="puntualidad" value="2" onchange="calcularCalificacion()">
+                <p>En ocasiones llega tarde, aunque justifica sus atrasos.</p>
+            </td>
+            <td>
+                <input type="radio" name="puntualidad" value="1" onchange="calcularCalificacion()">
+                <p>Habitualmente llega atrasado.</p>
+            </td>
+            <td>
+                <input type="radio" name="puntualidad" value="0" onchange="calcularCalificacion()">
+                <p>Nunca llega a tiempo.</p>
+            </td>
+        </tr>
+        <tr>
+            <td>14. Responsabilidad</td>
+            <td>
+                <input type="radio" name="responsabilidad" value="3" onchange="calcularCalificacion()">
+                <p>Siempre entrega sus trabajos dentro de los plazos previstos.</p>
+            </td>
+            <td>
+                <input type="radio" name="responsabilidad" value="2" onchange="calcularCalificacion()">
+                <p>Generalmente entrega sus trabajos en los plazos previstos.</p>
+            </td>
+            <td>
+                <input type="radio" name="responsabilidad" value="1" onchange="calcularCalificacion()">
+                <p>Entrega sus trabajos con retrasos.</p>
+            </td>
+            <td>
+                <input type="radio" name="responsabilidad" value="0" onchange="calcularCalificacion()">
+                <p>Nunca entrega sus trabajos en los plazos previstos.</p>
+            </td>
+        </tr>
+        <tr>
+            <td>15. Colaboración con el Trabajo</td>
+            <td>
+                <input type="radio" name="colaboracion_trabajo" value="3" onchange="calcularCalificacion()">
+                <p>Siempre colabora con sus pares.</p>
+            </td>
+            <td>
+                <input type="radio" name="colaboracion_trabajo" value="2" onchange="calcularCalificacion()">
+                <p>Casi siempre colabora con sus pares.</p>
+            </td>
+            <td>
+                <input type="radio" name="colaboracion_trabajo" value="1" onchange="calcularCalificacion()">
+                <p>Solo en ocasiones colabora con sus pares.</p>
+            </td>
+            <td>
+                <input type="radio" name="colaboracion_trabajo" value="0" onchange="calcularCalificacion()">
+                <p>Nunca colabora con sus pares.</p>
+            </td>
+        </tr>
+        <tr>
+            <td>16. Iniciativa</td>
+            <td>
+                <input type="radio" name="iniciativa" value="3" onchange="calcularCalificacion()">
+                <p>Siempre asume la iniciativa para poner en práctica ideas que aportan al trabajo.</p>
+            </td>
+            <td>
+                <input type="radio" name="iniciativa" value="2" onchange="calcularCalificacion()">
+                <p>Generalmente asume la iniciativa para poner en práctica ideas que aportan al trabajo.</p>
+            </td>
+            <td>
+                <input type="radio" name="iniciativa" value="1" onchange="calcularCalificacion()">
+                <p>Solo a veces asume la iniciativa para poner en práctica ideas que aportan al trabajo.</p>
+            </td>
+            <td>
+                <input type="radio" name="iniciativa" value="0" onchange="calcularCalificacion()">
+                <p>Carece de iniciativa.</p>
+            </td>
+        </tr>
+    </table>
+
+    <h2>A. OBSERVACIONES</h2>
+    <textarea id="observaciones" rows="4" cols="50"></textarea>
+
+    <h2>VI. USO INTERNO UAC (CALIFICACIÓN)</h2>
+    <p>La calificación del Informe de Práctica se obtiene con un puntaje máximo de 48 puntos y un 60% de exigencia para la aprobación con nota cuatro coma cero (4,0).</p>
+    <table id="calificacion">
+        <tr>
+            <th>Respuestas</th>
+            <th>Cantidad de Respuestas</th>
+            <th>Factor</th>
+            <th>Puntaje</th>
+        </tr>
+        <tr>
+            <td>a.</td>
+            <td id="cantidad_a">0</td>
+            <td>3</td>
+            <td id="puntaje_a">0</td>
+        </tr>
+        <tr>
+            <td>b.</td>
+            <td id="cantidad_b">0</td>
+            <td>2</td>
+            <td id="puntaje_b">0</td>
+        </tr>
+        <tr>
+            <td>c.</td>
+            <td id="cantidad_c">0</td>
+            <td>1</td>
+            <td id="puntaje_c">0</td>
+        </tr>
+        <tr>
+            <td>d.</td>
+            <td id="cantidad_d">0</td>
+            <td>0</td>
+            <td id="puntaje_d">0</td>
+        </tr>
+        <tr>
+            <td colspan="3">Total</td>
+            <td id="puntaje_total">0</td>
+        </tr>
+        <tr>
+            <td colspan="3"><strong>CALIFICACIÓN PRÁCTICA LABORAL</strong></td>
+            <td id="calificacion_final">0.0</td>
+        </tr>
+    </table>
+
+    <div class="firma">
+        <p>Firma estudiante: ____________________</p>
+    </div>
+    <div class="firma">
+        <p>Firma guía de práctica: ____________________</p>
+    </div>
+
+    <button class="no-print" onclick="window.print()">Imprimir / Guardar como PDF</button>
+
+    <script>
+        function calcularCalificacion() {
+            let respuestas = {a: 0, b: 0, c: 0, d: 0};
+            let total = 0;
+            document.querySelectorAll('input[type="radio"]:checked').forEach(function(radio) {
+                let valor = parseInt(radio.value);
+                if (valor === 3) respuestas.a++;
+                else if (valor === 2) respuestas.b++;
+                else if (valor === 1) respuestas.c++;
+                else if (valor === 0) respuestas.d++;
+                total += valor;
+            });
+
+            document.getElementById('cantidad_a').textContent = respuestas.a;
+            document.getElementById('cantidad_b').textContent = respuestas.b;
+            document.getElementById('cantidad_c').textContent = respuestas.c;
+            document.getElementById('cantidad_d').textContent = respuestas.d;
+
+            document.getElementById('puntaje_a').textContent = respuestas.a * 3;
+            document.getElementById('puntaje_b').textContent = respuestas.b * 2;
+            document.getElementById('puntaje_c').textContent = respuestas.c * 1;
+            document.getElementById('puntaje_d').textContent = respuestas.d * 0;
+
+            document.getElementById('puntaje_total').textContent = total;
+
+            let calificacion = calcularNota(total);
+            document.getElementById('calificacion_final').textContent = calificacion.toFixed(1);
+        }
+
+        function calcularNota(puntaje) {
+            if (puntaje >= 29) {
+                return 4.0 + (puntaje - 29) * (3 / 19);
+            } else {
+                return 1.0 + (puntaje - 1) * (3 / 28);
+            }
+        }
+    </script>
+</body>
+</html>
